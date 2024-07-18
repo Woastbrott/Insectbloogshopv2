@@ -1,29 +1,26 @@
-// components/AnswerForm.js
 import { useState } from 'react';
 
 export default function AnswerForm({ questionId, onSubmit }) {
   const [answer, setAnswer] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (answer.trim()) {
-      await onSubmit(questionId, answer);
-      setAnswer('');
-    }
+    onSubmit(questionId, answer);
+    setAnswer('');
   };
 
   return (
     <form onSubmit={handleSubmit} className="mt-4">
-      <label className="block text-gray-700">Antwort</label>
       <textarea
         value={answer}
         onChange={(e) => setAnswer(e.target.value)}
-        className="w-full px-3 py-2 border rounded-lg"
-        required
+        className="w-full p-2 border rounded-lg"
+        rows="4"
+        placeholder="Antwort eingeben..."
       ></textarea>
       <button
         type="submit"
-        className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-700 mt-2"
+        className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
       >
         Antwort senden
       </button>
